@@ -1,0 +1,31 @@
+<div class="grid grid-cols-5 gap-2 text-center mb-8">
+  <a href="/jobs/pending"   class="p-4 bg-gray-800 rounded hover:bg-gray-700">Pending: <%= counts.pending %></a>
+  <a href="/jobs/processing" class="p-4 bg-gray-800 rounded hover:bg-gray-700">Processing: <%= counts.processing %></a>
+  <a href="/jobs/completed" class="p-4 bg-gray-800 rounded hover:bg-gray-700">Completed: <%= counts.completed %></a>
+  <a href="/jobs/failed" class="p-4 bg-gray-800 rounded hover:bg-gray-700">Failed: <%= counts.failed %></a>
+  <a href="/dlq" class="p-4 bg-gray-800 rounded hover:bg-gray-700">DLQ: <%= counts.dead %></a>
+</div>
+
+<h2 class="text-xl font-semibold mb-2">Enqueue Job</h2>
+<form method="POST" action="/enqueue" class="bg-gray-800 p-4 rounded mb-8">
+  <input class="w-full mb-2 p-2 bg-gray-700 rounded" name="id" placeholder="Job ID">
+  <input class="w-full mb-2 p-2 bg-gray-700 rounded" name="command" placeholder="Command (ex: echo hi)">
+  <input class="w-full mb-2 p-2 bg-gray-700 rounded" name="max_retries" placeholder="Max Retries (default 3)">
+  <button class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Enqueue</button>
+</form>
+
+<h2 class="text-xl font-semibold mb-2">Worker Controls</h2>
+
+<form method="POST" action="/worker/start" class="bg-gray-800 p-4 rounded mb-4 flex gap-2">
+  <input name="count" class="w-24 p-2 bg-gray-700 rounded" placeholder="Count" value="1">
+  <input name="id" class="w-40 p-2 bg-gray-700 rounded" placeholder="Worker ID Prefix">
+  <button class="bg-green-600 px-4 py-2 rounded hover:bg-green-700">Start Workers</button>
+</form>
+
+<form method="POST" action="/worker/once" class="bg-gray-800 p-4 rounded mb-4">
+  <button class="bg-yellow-600 px-4 py-2 rounded hover:bg-yellow-700">Run Once</button>
+</form>
+
+<form method="POST" action="/worker/stop" class="bg-gray-800 p-4 rounded mb-4">
+  <button class="bg-red-600 px-4 py-2 rounded hover:bg-red-700">Stop Workers</button>
+</form>

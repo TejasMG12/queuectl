@@ -4,7 +4,8 @@
   "description": "Flam Backend Assessment",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "dashboard": "node dashboard.js"
   },
   "bin": {
     "queuectl": "./index.js"
@@ -14,7 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "better-sqlite3": "^12.4.1",
+    "body-parser": "^2.2.0",
     "commander": "^14.0.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
     "uuid": "^13.0.0"
   },
   "devDependencies": {

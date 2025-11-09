@@ -188,6 +188,42 @@ function areWorkersStopped() {
   const row = db.prepare(`SELECT value FROM config WHERE key='workers_stopped'`).get();
   return row && row.value === '1';
 }
+function getJobCounts() {
+  return db.prepare(`
+    SELECT
+      SUM(CASE WHEN state='pending' THEN 1 ELSE 0 END) AS pending,
+      SUM(CASE WHEN state='processing' THEN 1 ELSE 0 END) AS processing,
+      SUM(CASE WHEN state='completed' THEN 1 ELSE 0 END) AS completed,
+      SUM(CASE WHEN state='failed' THEN 1 ELSE 0 END) AS failed,
+      SUM(CASE WHEN state='dead' THEN 1 ELSE 0 END) AS dead
+    FROM jobs
+  `).get();
+}
+
+async function listJobsByState(state) {
+  const db = await getDb();
+  const rows = await db.all(
+    `SELECT id, command, state, attempts, max_retries, created_at, updated_at
+     FROM jobs
+     WHERE state = ?
+     ORDER BY created_at DESC`,
+    [state]
+  );
+  return rows;
+}
+
+// async function listDLQ() {
+//   const rows = await db.all(`SELECT * FROM dlq ORDER BY failed_at DESC`);
+//   return rows;
+// }
+
+async function retryDLQJob(id) {
+  await db.run(`INSERT INTO jobs (id, command, state, attempts, max_retries, created_at)
+                SELECT id, command, 'pending', 0, max_retries, datetime('now')
+                FROM dlq WHERE id = ?`, [id]);
+  await db.run(`DELETE FROM dlq WHERE id = ?`, [id]);
+}
+
 
 module.exports = {
   db,
@@ -207,5 +243,9 @@ module.exports = {
   deleteJob,
   nowISO,
   setWorkersStopped,
-  areWorkersStopped
+  areWorkersStopped,
+  getJobCounts,
+  listJobsByState,
+  listDLQ,
+  retryDLQJob
 };

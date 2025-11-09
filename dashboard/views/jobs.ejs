@@ -1,0 +1,17 @@
+<h2 class="text-xl font-bold mb-4 capitalize"><%= state %> Jobs</h2>
+
+<table class="w-full bg-gray-800 text-gray-200 rounded overflow-hidden">
+  <tr class="bg-gray-700">
+    <th class="p-2 text-left">ID</th>
+    <th class="p-2 text-left">Command</th>
+    <th class="p-2 text-left">Attempts</th>
+  </tr>
+
+  <% jobs.forEach(job => { %>
+    <tr>
+      <td class="p-2"><%= job.id %></td>
+      <td class="p-2"><%= job.command %></td>
+      <td class="p-2"><%= job.attempts %></td>
+    </tr>
+  <% }) %>
+</table>
