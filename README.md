@@ -223,38 +223,3 @@ http://localhost:8080
 * Stop workers
 * Retry DLQ jobs
 * View job history
-
-### Roadmap:
-
-| Feature            | Status      |
-| ------------------ | ----------- |
-| Live refresh       | Planned     |
-| Worker status list | In progress |
-| Job logs view      | Planned     |
-| Add worker from UI | Planned     |
-
----
-
-## License
-
-MIT
-
----
-
-## Author
-
-Your Name
-Backend / Distributed Systems Developer
-
-```
-
----
-
-If you'd like, I can now:
-
-1. **Generate a GIF or video demo script**
-2. **Write the architecture diagram**
-3. **Polish README formatting style (GitHub-optimized)**
-
-Which one should I do next?
-```
