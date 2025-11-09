@@ -1,0 +1,26 @@
+{
+  "name": "flamassessment",
+  "version": "1.0.0",
+  "description": "Flam Backend Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand"
+  },
+  "bin": {
+    "queuectl": "./index.js"
+  },
+  "type": "commonjs",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "commander": "^14.0.2",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "cross-spawn": "^7.0.6",
+    "jest": "^30.2.0",
+    "rimraf": "^6.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
