@@ -11,6 +11,9 @@ QueueCTL is a lightweight, background job queue system with:
 
 This project is built to demonstrate system design fundamentals for backend infrastructure & distributed processing.
 
+Here is a demo video showcasing the project:
+
+[Demo Video](https://drive.google.com/drive/folders/1gElGzozQFMIVs09_AEfQHCzz0zGaQJd8?usp=sharing)
 ---
 
 ## 1. Setup Instructions
